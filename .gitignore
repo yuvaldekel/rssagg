@@ -1,2 +1,4 @@
 rssagg
 .env
+.vscode/
+vendor/
