@@ -2,3 +2,4 @@ rssagg
 .env
 .vscode/
 vendor/
+thunder-tests/
