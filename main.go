@@ -30,14 +30,14 @@ func main() {
 		log.Fatal("Fatal: DB_URL is not found in the environment")
 	}
 
-	_, err := sql.Open("postgres", dbURL)
+	conn, err := sql.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatalf("Fatal: can't connect to database: %v", err)
 	}
 
-	//apiCfg := apiConfig{
-	//	DB: database.New(conn),
-	//}
+	apiCfg := apiConfig{
+		DB: database.New(conn),
+	}
 
 	router := chi.NewRouter()
 
@@ -54,6 +54,7 @@ func main() {
 
 	v1Router.Get("/healthz", handlerReadiness)
 	v1Router.Get("/err", handlerErr)
+	v1Router.Post("/users", apiCfg.handlerCreateUser)
 
 	router.Mount("/v1", v1Router)
 
