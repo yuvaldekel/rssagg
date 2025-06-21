@@ -41,5 +41,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.REGISTRY_USERNAME }}/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }}
-
+          tags: |
+            ${{ secrets.REGISTRY_USERNAME }}/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }}
+            ${{ secrets.REGISTRY_USERNAME }}/${{ steps.vars.outputs.repo }}:latest
