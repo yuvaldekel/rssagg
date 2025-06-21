@@ -5,6 +5,8 @@ services:
     container_name: rss-aggregation
     hostname: rss-aggregation
     restart: always
+    pull_policy: always
+
     ports:
       - "8080:8080"
     networks:
@@ -16,6 +18,8 @@ services:
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       DB_USER: ${POSTGRES_USER}
       DB: ${POSTGRES_DB}
+    depends_on:
+      - postgres
     healthcheck:
       test: ["CMD", "curl", "-f", "http://rss-aggregation:8080/healthz"]
       interval: 30s
