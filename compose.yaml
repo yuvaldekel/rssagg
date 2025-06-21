@@ -1,0 +1,21 @@
+services:
+
+
+  rss-aggregation-api:
+    image: yuvaldekel/rssagg:latest
+    container_name: rss-aggregation
+    hostname: rss-aggregation
+    ports:
+      - "80:8080"
+    environment:
+      PORT: 8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://rss-aggregation:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  
+
+networks:
+  rss-net:
+    external: true
