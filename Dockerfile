@@ -7,7 +7,8 @@ COPY go.mod go.sum ./
 COPY internal/ internal
 RUN go mod download
 
-COPY *.go .
+COPY main/ .
+COPY main.go .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/rssagg .
 
