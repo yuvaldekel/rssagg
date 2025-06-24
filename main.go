@@ -63,7 +63,8 @@ func main() {
 	}))
 
 	v1Router := chi.NewRouter()
-
+	v1Router.Use(StripTrailingSlashMiddleware)
+	v1Router.Use()
 	v1Router.Get("/healthz", handlerReadiness)
 	v1Router.Get("/err", handlerErr)
 
