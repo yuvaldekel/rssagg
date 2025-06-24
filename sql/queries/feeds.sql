@@ -19,4 +19,4 @@ WHERE id = $1
 RETURNING *;
 
 -- name: DeleteFeed :exec
-DELETE FROM feed_follows WHERE id = $1 AND user_id = $2;
+DELETE FROM feeds WHERE id = $1 AND user_id = $2;

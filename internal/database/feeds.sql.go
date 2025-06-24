@@ -50,7 +50,7 @@ func (q *Queries) CreateFeed(ctx context.Context, arg CreateFeedParams) (Feed, e
 }
 
 const deleteFeed = `-- name: DeleteFeed :exec
-DELETE FROM feed_follows WHERE id = $1 AND user_id = $2
+DELETE FROM feeds WHERE id = $1 AND user_id = $2
 `
 
 type DeleteFeedParams struct {
