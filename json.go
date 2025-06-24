@@ -7,13 +7,14 @@ import (
 	"strings"
 )
 
-func StripTrailingSlashMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/" {
-			r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
-		}
-		next.ServeHTTP(w, r)
-	})
+func RedirectTrailingSlashMiddleware(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        if r.URL.Path != "/" && strings.HasSuffix(r.URL.Path, "/") {
+            http.Redirect(w, r, strings.TrimSuffix(r.URL.Path, "/"), http.StatusMovedPermanently)
+            return
+        }
+        next.ServeHTTP(w, r)
+    })
 }
 
 func respondWithError(w http.ResponseWriter, code int, msg string) {
