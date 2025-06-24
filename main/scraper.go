@@ -64,7 +64,7 @@ func scrapeFeed(db *database.Queries, wg *sync.WaitGroup, feed database.Feed) {
 
 		pubAt, err := time.Parse(time.RFC1123Z, item.PubDate)
 		if err != nil {
-			log.Printf("Error Couldn't parse date %v with err %v", item.PubDate, err)
+			log.Printf("Error: Error Couldn't parse date %v with err %v", item.PubDate, err)
 			continue
 		}
 
@@ -88,5 +88,5 @@ func scrapeFeed(db *database.Queries, wg *sync.WaitGroup, feed database.Feed) {
 		}
 
 	}
-	log.Printf("Feed %s collected, %v posts found", feed.Name, len(RSSFeed.Channel.Item))
+	log.Printf("Info: Feed %s collected, %v posts found", feed.Name, len(RSSFeed.Channel.Item))
 }
