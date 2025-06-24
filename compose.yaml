@@ -13,14 +13,10 @@ services:
     environment:
       PORT: ${PORT}
       DB_URL: ${DB_URL}
-      DB_HOST: ${DB_HOST}
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-      DB_USER: ${POSTGRES_USER}
-      DB: ${POSTGRES_DB}
     depends_on:
       - postgres
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://rss-aggregation:8080/v1/healthz"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/healthz" ]
       interval: 30s
       timeout: 10s
       retries: 5
